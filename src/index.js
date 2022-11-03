@@ -1,1 +1,5 @@
-console.log("hello world !!");
+const $ = document.querySelector.bind(document);
+
+(() => {
+  $("#app").innerHTML = "HELLO TODO WORLD";
+})();
