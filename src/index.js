@@ -33,6 +33,25 @@ const render = (todoList) => {
   `;
 };
 
+const updateTodoList = (todoList) => {
+  $(".todo-container").remove();
+  console.log(todoList);
+  $(".wrapper").insertAdjacentHTML("beforeend", renderTodoListView(todoList));
+};
+
+const buttonClickHandler = (todoList) => {
+  const input = $(".todo-input");
+
+  if (!input.value.length) {
+    alert("할 일을 입력해주세요.");
+    return;
+  }
+
+  todoList.push({ id: todoList.length + 1, todo: input.value });
+  input.value = "";
+  updateTodoList(todoList);
+};
+
 (() => {
   const todoList = [
     { id: 1, todo: "먹기" },
@@ -41,4 +60,8 @@ const render = (todoList) => {
   ];
 
   $("#app").innerHTML = render(todoList);
+
+  $(".save-button").addEventListener("click", () =>
+    buttonClickHandler(todoList)
+  );
 })();
